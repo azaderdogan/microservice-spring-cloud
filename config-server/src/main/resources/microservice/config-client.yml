@@ -1,0 +1,11 @@
+sp:
+  data:
+    cassandra:
+      contact-points: localhost
+      keyspace-name: spring_cloud
+      password: cassandra
+      port: 9042
+      username: cassandra
+logging:
+  level:
+    org.springframework.boot: DEBUG
