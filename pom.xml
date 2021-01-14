@@ -20,9 +20,10 @@
     <description>Microservice project for Spring Boot</description>
 
     <modules>
-        <module>account-service</module>
+
         <module>service-parent</module>
         <module>config-server</module>
+        <module>account-service</module>
     </modules>
 
     <properties>
@@ -55,4 +56,12 @@
             </resource>
         </resources>
     </build>
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </repository>
+    </repositories>
+
 </project>

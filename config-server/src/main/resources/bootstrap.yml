@@ -7,8 +7,12 @@ spring:
       server:
         native:
           search-locations: classpath:/microservice
-      enabled: true
+        default-profile: native
 
+      discovery:
+        enabled: false
   profiles:
     active: native
+  application:
+    name: config-server
 
