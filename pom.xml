@@ -25,6 +25,7 @@
         <module>config-server</module>
         <module>account-service</module>
         <module>eureka-server</module>
+        <module>ticket-service</module>
     </modules>
 
     <properties>

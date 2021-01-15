@@ -1,9 +1,11 @@
 package com.azaderdogan.accountservice.api;
 
-import com.azaderdogan.accountservice.entity.Account;
+import com.azaderdogan.accountservice.model.request.AccountSaveRequest;
+import com.azaderdogan.accountservice.model.response.AccountResponse;
 import com.azaderdogan.accountservice.service.IAccountBusiness;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,46 +22,49 @@ public class AccountApi implements IAccountController {
 
     @GetMapping("/{id}")
     @Override //eğer değeri pathten alıyorsam path variable diyorum.
-    public ResponseEntity<Account> get(@PathVariable("id") String id) {
+    public ResponseEntity<AccountResponse> get(@PathVariable("id") String id) {
         /**
          * ResponseEntity bizim dışarıya vereceğimiz http status durum kodlarını kontrol eder.
          */
-        return new ResponseEntity<>(accountBusiness.get(id), HttpStatus.OK);
+        return  ResponseEntity.ok(accountBusiness.get(id));
 
     }
     @GetMapping()
     @Override //eğer değeri pathten alıyorsam path variable diyorum.
-    public ResponseEntity<List<Account>> getAll() {
+    public ResponseEntity<List<AccountResponse>> getAll() {
         /**
          * ResponseEntity bizim dışarıya vereceğimiz http status durum kodlarını kontrol eder.
          */
-        return new ResponseEntity<>(accountBusiness.getAll(), HttpStatus.OK);
+        return  ResponseEntity.ok(accountBusiness.getAll());
 
     }
 
     @PostMapping
     @Override
-    public ResponseEntity<Account> save(@RequestBody Account account) {
+    public ResponseEntity<AccountResponse> save(@RequestBody AccountSaveRequest account) {
 
         return ResponseEntity.ok(accountBusiness.save(account));
     }
 
     @PutMapping("/{id}")//update işlemleri outta yapılır
     @Override
-    public ResponseEntity<Account> update(@PathVariable String id,@RequestBody  Account account) {
+    public ResponseEntity<AccountResponse> update(@PathVariable String id, @RequestBody AccountSaveRequest account) {
         accountBusiness.update(id,account);
         return null;
     }
 
     @DeleteMapping
     @Override
-    public void delete(Account account) {
-        accountBusiness.delete(account);
+    public void delete(String id) {
+        accountBusiness.delete(id);
     }
 
+    @GetMapping("/page")
     @Override
-    public ResponseEntity<Account> pagination() {
+    public ResponseEntity<Slice<AccountResponse>> pagination(Pageable pageable) {
+
         //todo
-        return null;
+        return ResponseEntity.ok( accountBusiness.pagination(pageable));
+
     }
 }
