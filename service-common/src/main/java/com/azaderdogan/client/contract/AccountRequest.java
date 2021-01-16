@@ -1,10 +1,9 @@
-package com.azaderdogan.accountservice.model.response;
+package com.azaderdogan.client.contract;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.cassandra.core.mapping.Column;
 
 import java.util.Date;
 
@@ -12,18 +11,19 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountResponse {
-private String id;
+
+public class AccountRequest {
+
+
     private String username;
 
     private String name;
+
+    private String password;
 
     private String surname;
 
     private String email;
 
-    private boolean active;
-
     private Date dateOfBirth;
-
 }

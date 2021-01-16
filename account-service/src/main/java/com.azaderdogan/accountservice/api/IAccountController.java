@@ -1,7 +1,7 @@
 package com.azaderdogan.accountservice.api;
 
-import com.azaderdogan.accountservice.model.request.AccountSaveRequest;
-import com.azaderdogan.accountservice.model.response.AccountResponse;
+import com.azaderdogan.client.contract.AccountRequest;
+import com.azaderdogan.client.contract.AccountResponse;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +14,8 @@ public interface IAccountController {
 
     ResponseEntity<AccountResponse> get(@PathVariable("id") String id);
     ResponseEntity<List<AccountResponse>> getAll();
-    ResponseEntity<AccountResponse> save(AccountSaveRequest accountRequest);
-    ResponseEntity<AccountResponse>  update(String id,AccountSaveRequest account);
+    ResponseEntity<AccountResponse> save(AccountRequest accountRequest);
+    ResponseEntity<AccountResponse>  update(String id,AccountRequest account);
     void delete(String id);
     ResponseEntity<Slice<AccountResponse>> pagination(Pageable pageable);
 

@@ -2,7 +2,8 @@ spring:
   profiles:
     active: development
   application:
-    name: account-serviceC
+    name: account-service
   cloud:
     config:
       uri: http://localhost:8888
+

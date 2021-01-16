@@ -1,8 +1,8 @@
 package com.azaderdogan.accountservice.api;
 
-import com.azaderdogan.accountservice.model.request.AccountSaveRequest;
-import com.azaderdogan.accountservice.model.response.AccountResponse;
 import com.azaderdogan.accountservice.service.IAccountBusiness;
+import com.azaderdogan.client.contract.AccountRequest;
+import com.azaderdogan.client.contract.AccountResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -41,14 +41,14 @@ public class AccountApi implements IAccountController {
 
     @PostMapping
     @Override
-    public ResponseEntity<AccountResponse> save(@RequestBody AccountSaveRequest account) {
+    public ResponseEntity<AccountResponse> save(@RequestBody AccountRequest account) {
 
         return ResponseEntity.ok(accountBusiness.save(account));
     }
 
     @PutMapping("/{id}")//update işlemleri outta yapılır
     @Override
-    public ResponseEntity<AccountResponse> update(@PathVariable String id, @RequestBody AccountSaveRequest account) {
+    public ResponseEntity<AccountResponse> update(@PathVariable String id, @RequestBody AccountRequest account) {
         accountBusiness.update(id,account);
         return null;
     }

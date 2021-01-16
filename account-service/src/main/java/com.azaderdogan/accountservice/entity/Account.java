@@ -1,6 +1,8 @@
 package com.azaderdogan.accountservice.entity;
 
+import com.datastax.driver.core.DataType;
 import lombok.*;
+import org.springframework.data.cassandra.core.mapping.CassandraType;
 import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
@@ -28,7 +30,7 @@ public class Account implements Serializable {
     @PrimaryKey
     private String id = UUID.randomUUID().toString();
 
-    @Column(value = "uname")//bu tarz değerleri biz belirlersek daha sağlıklı olur. (eşleşme konusu db)
+    @Column(value = "usname")//bu tarz değerleri biz belirlersek daha sağlıklı olur. (eşleşme konusu db)
     private String username;
 
     @Column(value = "name")
@@ -40,12 +42,13 @@ public class Account implements Serializable {
     @Column(value = "email")
     private String email;
 
-    @Column(value = "pwd")
+    @Column(value = "psswd")
     private String password;
 
-    @Column(value = "birthDate")
+    @CassandraType(type = DataType.Name.TIMESTAMP)
+    @Column(value = "birth_date")
     private Date dateOfBirth;
-
+    @CassandraType(type = DataType.Name.TIMESTAMP)
     @Column(value = "created_at")
     private Date createdAt;
 

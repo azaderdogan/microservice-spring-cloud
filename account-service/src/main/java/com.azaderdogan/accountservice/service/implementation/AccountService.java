@@ -1,10 +1,10 @@
 package com.azaderdogan.accountservice.service.implementation;
 
 import com.azaderdogan.accountservice.entity.Account;
-import com.azaderdogan.accountservice.model.request.AccountSaveRequest;
-import com.azaderdogan.accountservice.model.response.AccountResponse;
 import com.azaderdogan.accountservice.repository.cassandra.AccountRepository;
 import com.azaderdogan.accountservice.service.IAccountBusiness;
+import com.azaderdogan.client.contract.AccountRequest;
+import com.azaderdogan.client.contract.AccountResponse;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -37,14 +35,14 @@ public class AccountService implements IAccountBusiness {
     }
     @Transactional
     @Override
-    public AccountResponse save(AccountSaveRequest accountRequest) {
+    public AccountResponse save(AccountRequest accountRequest) {
         Account account = modelMapper.map(accountRequest, Account.class);
         accountRepository.save(account);
         return modelMapper.map(account, AccountResponse.class);
     }
     @Transactional
     @Override
-    public AccountResponse update(String id, AccountSaveRequest accountRequest) {
+    public AccountResponse update(String id, AccountRequest accountRequest) {
         Assert.isNull(id, "Id cannot be null");
         Optional<Account> account = Optional.ofNullable(accountRepository
                 .findById(id)
