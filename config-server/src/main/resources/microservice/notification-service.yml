@@ -1,22 +1,17 @@
 server:
-  port: 8502
+  port: 8503
+
 spring:
   application:
-    name: ticket-service
-  datasource:
-    url: jdbc:mysql://localhost:3306/microserviceapp
-    username: root
-    password: microservice-app
-  jpa:
-    hibernate:
-      ddl-auto: update
+    name: notification-service
   rabbitmq:
     username: someuser
     password: someuser
+
   cloud:
     stream:
       bindings:
-        output:
+        input:
           destination: msqueue
 eureka:
   client:

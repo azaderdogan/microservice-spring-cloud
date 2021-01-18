@@ -9,6 +9,7 @@ import com.azaderdogan.ticketservice.entity.TicketStatus;
 import com.azaderdogan.ticketservice.entity.elasticsearch.TicketModel;
 import com.azaderdogan.ticketservice.repository.jpa.TicketRepository;
 import com.azaderdogan.ticketservice.repository.elasticsearch.TicketElasticRepository;
+import com.azaderdogan.ticketservice.service.ITicketNotificationService;
 import com.azaderdogan.ticketservice.service.ITicketService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -34,6 +35,7 @@ public class TicketService implements ITicketService {
     private final ModelMapper modelMapper;
     @Autowired
     private final AccountServiceClient accountServiceClient;
+    private  final ITicketNotificationService ticketNotificationService;
 
 
     @Transactional
@@ -75,6 +77,7 @@ public class TicketService implements ITicketService {
         ticketElasticRepository.save(ticketModel);
         //oluşan nesneyi döndür
         ticketDto.setId(ticket.getId());
+        ticketNotificationService.sendToQueue(ticket);
         return ticketDto;
     }
 

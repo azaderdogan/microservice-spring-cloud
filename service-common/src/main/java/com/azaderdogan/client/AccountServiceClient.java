@@ -21,6 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface AccountServiceClient {
 
     @RequestMapping("/account/{id}")
-     ResponseEntity<AccountResponse> get(@PathVariable("id") String id);
+    ResponseEntity<AccountResponse> get(@PathVariable("id") String id);
 
+    public static void metot3() {
+
+    }
+    
 }

@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccountRepository extends CassandraRepository<Account, String> {
 
+    Account getAccountByNameAndUsername(String username,String name);
 
 }
