@@ -7,7 +7,15 @@ spring:
   rabbitmq:
     username: someuser
     password: someuser
-
+  boot:
+    admin:
+      client:
+        url: http://localhost:8508
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
   cloud:
     stream:
       bindings:
